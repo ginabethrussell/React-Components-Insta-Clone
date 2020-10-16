@@ -56,9 +56,9 @@ const App = () => {
         return post;
       }
     }));
-
+    setFilteredPosts(posts);
   };
-
+// Use setPosts to update posts value when a new comment is added from the CommentInput component
   const updatePost = (postId, newCommentObj)=> {
     setPosts(posts.map(post => {
       if(post.id === postId){
