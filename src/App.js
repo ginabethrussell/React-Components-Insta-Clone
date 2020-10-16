@@ -59,11 +59,22 @@ const App = () => {
 
   };
 
+  const updatePost = (postId, newCommentObj)=> {
+    setPosts(posts.map(post => {
+      if(post.id === postId){
+        let newPost = {...post};
+        newPost.comments.push(newCommentObj);
+        return newPost;
+      }else {
+        return post;
+      }
+    }));
+  }
   return (
     <div className='App'>
       {/* Add SearchBar and Posts here to render them */}
       <SearchBar searchTerm={searchTerm} filterSearch={filterSearch}/>
-      <Posts likePost={likePost} posts={filteredPosts}/>
+      <Posts updatePost={updatePost} likePost={likePost} posts={filteredPosts}/>
       {/* Check the implementation of each component, to see what props they require, if any! */}
     </div>
   );

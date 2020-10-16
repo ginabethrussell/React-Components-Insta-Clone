@@ -8,7 +8,7 @@ const Comments = props => {
   const [newComment, setNewComment] = useState('');
 
   // 🔥 Make sure the parent of Comments is passing the right props!
-  const { comments } = props;
+  const { comments, updatePost, postId } = props;
  
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -23,10 +23,11 @@ const Comments = props => {
      "id": nextId,
      "username": username,
      "text": newComment
-   }
-   comments.push(newCommentObj);
-   console.log(newCommentObj);
-   console.log(comments);
+    }
+    updatePost(postId, newCommentObj);
+  //  comments.push(newCommentObj);
+  //  console.log(newCommentObj);
+  //  console.log(comments);
    setUsername('');
    setNewComment('');
   }
