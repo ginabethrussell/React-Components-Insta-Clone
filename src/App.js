@@ -69,6 +69,7 @@ const App = () => {
         return post;
       }
     }));
+    setFilteredPosts(posts);
   }
   return (
     <div className='App'>
