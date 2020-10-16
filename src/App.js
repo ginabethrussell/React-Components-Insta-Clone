@@ -19,18 +19,20 @@ const App = () => {
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
   const [posts, setPosts] = useState(dummyData);
   const [searchTerm, setSearchTerm] = useState('');
-
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  
+  //Stretch: Added a third slice of state to filter posts by username
   const filterSearch = (value)=> {
-    if (value === ''){
-      setPosts(posts);
-    }
     setSearchTerm(value);
-    let newPostList = [...posts];
-    
-    const filteredPosts = newPostList.filter(post => {
-      return post.username.includes(value);
-    })
-    setPosts(filteredPosts);
+    let newPostList = [...filteredPosts];
+    if (value === ''){
+      setFilteredPosts(posts);
+    }else{
+      const nextFilteredPosts = newPostList.filter(post => {
+        return post.username.includes(value);
+      });
+      setFilteredPosts(nextFilteredPosts);
+    }
   }
 
   const likePost = postId => {
@@ -61,7 +63,7 @@ const App = () => {
     <div className='App'>
       {/* Add SearchBar and Posts here to render them */}
       <SearchBar searchTerm={searchTerm} filterSearch={filterSearch}/>
-      <Posts likePost={likePost} posts={posts}/>
+      <Posts likePost={likePost} posts={filteredPosts}/>
       {/* Check the implementation of each component, to see what props they require, if any! */}
     </div>
   );
