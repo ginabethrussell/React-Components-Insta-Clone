@@ -1,10 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Comment from './Comment';
+import CommentInput from './CommentInput';
 import './Comments.css';
 
 const Comments = props => {
+  const [username, setUsername] = useState('');
+  const [newComment, setNewComment] = useState('');
+
   // 🔥 Make sure the parent of Comments is passing the right props!
   const { comments } = props;
+ 
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  }
+  const handleNewComment = (e) => {
+    setNewComment(e.target.value);
+  }
+  const addComment = ()=> {
+    const lastCommentId = comments[comments.length - 1].id;
+    const nextId = lastCommentId + 1;
+    const newCommentObj = {
+     "id": nextId,
+     "username": username,
+     "text": newComment
+   }
+   comments.push(newCommentObj);
+   console.log(newCommentObj);
+   console.log(comments);
+   setUsername('');
+   setNewComment('');
+  }
 
   return (
     <div>
@@ -12,6 +37,8 @@ const Comments = props => {
       {comments.map(comment => (
         <Comment key={comment.id } comment={comment}/>
       ))} 
+      <CommentInput username={username} newComment={newComment} addComment={addComment}
+      handleUsername={handleUsername} handleNewComment={handleNewComment} />
     </div>
   )
 };
