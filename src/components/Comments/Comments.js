@@ -25,9 +25,6 @@ const Comments = props => {
      "text": newComment
     }
     updatePost(postId, newCommentObj);
-  //  comments.push(newCommentObj);
-  //  console.log(newCommentObj);
-  //  console.log(comments);
    setUsername('');
    setNewComment('');
   }

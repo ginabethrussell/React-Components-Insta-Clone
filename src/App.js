@@ -24,9 +24,9 @@ const App = () => {
   //Stretch: Added a third slice of state to filter posts by username
   const filterSearch = (value)=> {
     setSearchTerm(value);
-    let newPostList = [...filteredPosts];
+    let newPostList = [...posts];
     if (value === ''){
-      setFilteredPosts(posts);
+      setFilteredPosts(newPostList);
     }else{
       const nextFilteredPosts = newPostList.filter(post => {
         return post.username.includes(value);
